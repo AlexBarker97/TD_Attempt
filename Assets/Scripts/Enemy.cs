@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    Lives lives;
 
     public float startSpeed = 10f;
     public float speed;
@@ -18,7 +19,12 @@ public class Enemy : MonoBehaviour
     [Header("Unity Stuff")]
     public Image healthBar;
 
-    private void Start()
+    void Awake()
+    {
+        lives = GameObject.Find("GameMaster").GetComponent<Lives>();
+    }
+
+    void Start()
     {
         target = Waypoints.points[0];
         speed = startSpeed;
@@ -34,7 +40,7 @@ public class Enemy : MonoBehaviour
         {
             GetNextWaypoint();
         }
-        health = health - 0.02f;
+        health = health - 0.005f;
         healthBar.fillAmount = health / startHealth;
 
         if (health <= 0)
@@ -58,7 +64,10 @@ public class Enemy : MonoBehaviour
     void Die(string cause)
     {
         Destroy(gameObject);
-        Debug.Log(cause);
+        if (cause == "gotToEnd")
+        {
+            lives.lives--;
+        }
     }
 
 }

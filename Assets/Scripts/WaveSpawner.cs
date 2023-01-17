@@ -6,12 +6,19 @@ public class WaveSpawner : MonoBehaviour
 {
     public Transform enemyPrefab;
     public Transform spawnPoint;
-    private float gametime = -2f;
+    private float gametime;
+    private float initialGametime = -2f;
     public int timeBetweenWaves = 1;
     public Text waveCountdownText;
     private int waveIndex = 0;
     private int wavesSpawned = 0;
     private float nextWaveSpawnTime;
+
+    private void Start()
+    {
+        gametime = initialGametime;
+    }
+
     private void Update()
     {
         nextWaveSpawnTime = Mathf.Floor(waveIndex) * timeBetweenWaves;
