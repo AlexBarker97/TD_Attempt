@@ -1,10 +1,44 @@
-If water
-  check 4 neighbours around it
-  for neighbours 
-    if gnd
-      check if valid
-        set valid/invalid
-  for neighbours 
-    if valid
-      choose one valid neighbour at random
-        make water
+//-1 = no data
+//0 = gnd
+//1 = water
+//2 = valid
+//9 = invalid
+
+iterate over all tiles (matrix[x,y])
+  if matrix[x,y] == water
+    check the 4 neighbours around it (up,down,left,right)
+    for neighbours
+      get neighbourCoord
+      if neighbourCoord == gnd
+        if valid(neighbourCoord-matrix[x,y])
+          set neighbourCoord = valid;
+        else
+          set neighbourCoord = invalid;
+    for neighbours that aren't water
+      if valid
+        choose one valid neighbour at random
+          make water
+        other neighbours
+          make invalid
+
+string valid(dirX, dirY)
+  string direction;
+  switch (dirX)
+    -1 : direction = left
+    0 : 
+      if (dirY == 1)
+        direction = up
+      else
+        direction = down
+    1 : direction = right
+  check its neighbours (not including dir neighbour)
+    if they're water
+      return "invalid"
+    if they're valid, or invalid, or gnd
+      return "valid"
+      
+array neighboursCheck(x, y, dir)
+  array[0] = up
+  array[1] = right
+  array[2] = down
+  array[3] = left
