@@ -1,0 +1,10 @@
+If water
+  check 4 neighbours around it
+  for neighbours 
+    if gnd
+      check if valid
+        set valid/invalid
+  for neighbours 
+    if valid
+      choose one valid neighbour at random
+        make water
