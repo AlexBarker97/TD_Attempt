@@ -6,21 +6,20 @@ public class MapGeneration : MonoBehaviour
 {
     const int MATRIX_ROWS = 11;
     const int MATRIX_COLUMNS = 11;
-    double[,] matrix = new double[MATRIX_ROWS, MATRIX_COLUMNS];
-    string printable = "";
-    double up;
-    double down;
-    double right;
-    double left;
-    double up2 = 0;
-    double down2 = 0;
-    double right2 = 0;
-    double left2 = 0;
+    int[,] matrix = new int[MATRIX_ROWS, MATRIX_COLUMNS];
+    int[] neighbour = new int[4];
+    List<int> validCoordsX = new List<int>();
+    List<int> validCoordsY = new List<int>();
+    int x1;
+    int y1;
+    int x2;
+    int y2;
+    int rand;
     public GameObject gnd;
     public GameObject water;
     public GameObject valid;
     public GameObject invalid;
-    int maxIter = 1000;
+    int maxIter = 10000;
     int iter = 0;
 
     private void Start()
@@ -34,66 +33,109 @@ public class MapGeneration : MonoBehaviour
         {
             if (matrix[i, j] == 1)
             {
-                if ((j == 0) | (j == MATRIX_COLUMNS-1) | (i == 0) | (i == MATRIX_ROWS-1)) //boundary
+                if ((j == 1) | (j == MATRIX_COLUMNS - 2) | (i == 1) | (i == MATRIX_ROWS - 2))   //boundary
                 {
                     finished = true;
                 }
                 else
                 {
-                    up =    matrix[i, j - 1];
-                    down =  matrix[i, j + 1];
-                    right = matrix[i + 1, j];
-                    left =  matrix[i - 1, j];
+                    neighbour[0] = matrix[i, j - 1];    //up
+                    neighbour[1] = matrix[i, j + 1];   //right
+                    neighbour[2] = matrix[i + 1, j];    //down
+                    neighbour[3] = matrix[i - 1, j];   //left
 
-                    // 1 = water
-                    // 2 = valid for water
-                    // 9 = not valid for water / (is land)
+                    //-1 = no data
+                    //0 = gnd
+                    //1 = water
+                    //2 = valid
+                    //9 = invalid
 
-                    if (up == 0)
+                    for (int num = 0; num <= neighbour.Length - 1; num++) //FOR EACH NEIGHBOUR
                     {
-                        if ((matrix[i - 1, j - 1] == 1) | (matrix[i, j - 2] == 1) | (matrix[i + 1, j - 1] == 1))
+                        switch (num)                                    //Set x1,y1 coord to the neighbour being looked at
                         {
-                            matrix[i, j - 1] = 9;
+                            case 0:
+                                x1 = i;
+                                y1 = j - 1;
+                                break;
+                            case 1:
+                                x1 = i + 1;
+                                y1 = j;
+                                break;
+                            case 2:
+                                x1 = i;
+                                y1 = j + 1;
+                                break;
+                            case 3:
+                                x1 = i - 1;
+                                y1 = j;
+                                break;
                         }
-                        else
+
+                        if (matrix[x1, y1] == 0)                        //If the neighbour being looked at is ground label it with it's validity of being water (2=valid, 9=invalid)
                         {
-                            matrix[i, j - 1] = 2;
+                            switch (num)
+                            {
+                                case 0:
+                                    if ((matrix[x1 - 1, y1] == 1) | (matrix[x1, y1 - 1] == 1) | (matrix[x1 + 1, y1] == 1))
+                                    {
+                                        matrix[x1, y1] = 9;
+                                    }
+                                    else
+                                    {
+                                        matrix[x1, y1] = 2;
+                                        validCoordsX.Add(x1);
+                                        validCoordsY.Add(y1);
+                                    }
+                                    break;
+                                case 1:
+                                    if ((matrix[x1, y1 - 1] == 1) | (matrix[x1 + 1, y1] == 1) | (matrix[x1, y1 + 1] == 1))
+                                    {
+                                        matrix[x1, y1] = 9;
+                                    }
+                                    else
+                                    {
+                                        matrix[x1, y1] = 2;
+                                        validCoordsX.Add(x1);
+                                        validCoordsY.Add(y1);
+                                    }
+                                    break;
+                                case 2:
+                                    if ((matrix[x1 + 1, y1] == 1) | (matrix[x1, y1 + 1] == 1) | (matrix[x1 - 1, y1] == 1))
+                                    {
+                                        matrix[x1, y1] = 9;
+                                    }
+                                    else
+                                    {
+                                        matrix[x1, y1] = 2;
+                                        validCoordsX.Add(x1);
+                                        validCoordsY.Add(y1);
+                                    }
+                                    break;
+                                case 3:
+                                    if ((matrix[x1, y1 + 1] == 1) | (matrix[x1 - 1, y1] == 1) | (matrix[x1, y1 - 1] == 1))
+                                    {
+                                        matrix[x1, y1] = 9;
+                                    }
+                                    else
+                                    {
+                                        matrix[x1, y1] = 2;
+                                        validCoordsX.Add(x1);
+                                        validCoordsY.Add(y1);
+                                    }
+                                    break;
+                            }
                         }
                     }
-                    if (right == 0)
-                    {
-                        if ((matrix[i + 1, j + 1] == 1) | (matrix[i + 2, j] == 1) | (matrix[i + 1, j - 1] == 1))
-                        {
-                            matrix[i + 1, j] = 9;
-                        }
-                        else
-                        {
-                            matrix[i + 1, j] = 2;
-                        }
-                    }
-                    if (down == 0)
-                    {
-                        if ((matrix[i - 1, j + 1] == 1) | (matrix[i, j - 2] == 1) | (matrix[i + 1, j + 1] == 1))
-                        {
-                            matrix[i, j + 1] = 9;
-                        }
-                        else
-                        {
-                            matrix[i, j + 1] = 2;
-                        }
-                    }
-                    if (left == 0)
-                    {
-                        if ((matrix[i - 1, j - 1] == 1) | (matrix[i - 2, j] == 1) | (matrix[i - 1, j + 1] == 1))
-                        {
-                            matrix[i - 1, j] = 9;
-                        }
-                        else
-                        {
-                            matrix[i - 1, j] = 2;
-                        }
-                    }
-                }  
+                    rand = Random.Range(0, validCoordsX.Count);
+                    x2 = validCoordsX[rand];
+                    y2 = validCoordsY[rand];
+                    matrix[x2, y2] = 1;
+                    /*
+                    validCoordsX.Remove(x2);
+                    validCoordsX.Remove(y2);
+                    */
+                }
             }
             i++;
             if (i == MATRIX_ROWS)
