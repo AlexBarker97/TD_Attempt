@@ -5,30 +5,32 @@ using UnityEngine.UI;
 public class WaveSpawner : MonoBehaviour
 {
     public Transform enemyPrefab;
-    public Transform spawnPoint;
     private float gametime;
-    private float initialGametime = -2f;
-    public int timeBetweenWaves = 1;
+    private float initialGametime = -10f;
+    public int timeBetweenWaves = 5;
     public Text waveCountdownText;
     private int waveIndex = 0;
     private int wavesSpawned = 0;
     private float nextWaveSpawnTime;
+    GameObject spawnPoint;
 
-    private void Start()
+    void Start()
     {
         gametime = initialGametime;
+        spawnPoint = GameObject.Find("SpawnPoint(Clone)");
     }
 
     private void Update()
     {
         nextWaveSpawnTime = Mathf.Floor(waveIndex) * timeBetweenWaves;
+        spawnPoint = GameObject.Find("SpawnPoint(Clone)");
 
-        if (gametime > nextWaveSpawnTime)
+        if (gametime >= (nextWaveSpawnTime - 0.3f))
         {
             waveIndex++;
             if (waveIndex >= wavesSpawned)
             {
-                StartCoroutine(SpawnWave());
+                StartCoroutine(SpawnWave(spawnPoint));
                 wavesSpawned++;
             }
         }
@@ -37,17 +39,17 @@ public class WaveSpawner : MonoBehaviour
         waveCountdownText.text = Mathf.Round(Mathf.Abs(gametime)).ToString();
     }
 
-    IEnumerator SpawnWave()
+    IEnumerator SpawnWave(GameObject spawnPoint)
     {
         for (int i = 0; i < waveIndex; i++)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(0.3f);
+            SpawnEnemy(spawnPoint);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(GameObject spawnPoint)
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(enemyPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
     }
 }

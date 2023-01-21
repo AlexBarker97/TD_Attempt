@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
         {
             GetNextWaypoint();
         }
-        health = health - 0.005f;
+        health = health - 0.006f;
         healthBar.fillAmount = health / startHealth;
 
         if (health <= 0)
