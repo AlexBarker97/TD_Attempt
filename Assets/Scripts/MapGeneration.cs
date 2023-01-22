@@ -9,6 +9,8 @@ public class MapGeneration : MonoBehaviour
     public GameObject water;
     public GameObject waypoint;
     public GameObject startPoint;
+    public Transform StartPortal;
+    public Transform endPoint;
 
     public const int MATRIX_COLUMNS = 13;
     public const int MATRIX_ROWS = 11;
@@ -154,14 +156,16 @@ public class MapGeneration : MonoBehaviour
             (x4, y4) = list[i];
             if (i == 0)
             {
-                Instantiate(startPoint, new Vector3(x4 * spacing, -0.6f, y4 * spacing), Quaternion.Euler(0, 0, 0));
+                Instantiate(startPoint, new Vector3(x4 * spacing, -2f, y4 * spacing), Quaternion.Euler(0, 0, 0));
+                var myNewWayPoint = Instantiate(waypoint, new Vector3(x4 * spacing, 1f, y4 * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Waypoints").transform);
+                Instantiate(StartPortal, new Vector3(x4 * spacing, -0.6f, y4 * spacing), Quaternion.Euler(0, 0, 0));
             }
             else
             {
                 var myNewWayPoint = Instantiate(waypoint, new Vector3(x4 * spacing, -0.6f, y4 * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Waypoints").transform);
             }
-            
-        }      
+        }
+        Instantiate(endPoint, new Vector3(i * spacing, 0.0f, j * spacing), Quaternion.Euler(0, 0, 0));
     }
     (int,int) randomStart(int MATRIX_COLUMNS, int MATRIX_ROWS)
     {
