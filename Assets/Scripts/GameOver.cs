@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
+    public bool FreePlay = false;
     public void RetryReload()
     {
         Scene scene = SceneManager.GetActiveScene();
@@ -13,5 +14,10 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+    public void freePlay()
+    {
+        FreePlay = true;
+        gameObject.SetActive(false);
     }
 }

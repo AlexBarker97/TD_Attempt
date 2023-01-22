@@ -4,6 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - livesRemainingText: {instanceID: 0}
+  - gameOverUI: {fileID: 350827870316779057, guid: 2d070a54a2d670e46a98bc28a5772b15, type: 3}
   - enemyInstance: {fileID: 8588939033430859495, guid: 86e7c5a2c5987ac468683a22f9ff9fd2, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}

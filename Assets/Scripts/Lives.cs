@@ -7,23 +7,45 @@ public class Lives : MonoBehaviour
     Enemy enemy;
     public int lives;
     public Text livesRemainingText;
+    public GameObject gameOverUI;
+    public bool gameEnded;
     [SerializeField] GameObject enemyInstance;
+    bool freePlay = false;
 
     // Awake is called just before Start
     void Awake()
     {
         enemy = enemyInstance.GetComponent<Enemy>();
+        lives = 1;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        lives = 25;
+        gameEnded = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        livesRemainingText.text = lives.ToString();
+        freePlay = gameOverUI.GetComponent<GameOver>().FreePlay;
+        if ((lives <= 0) & (freePlay == false))
+        {
+            EndGame();
+        }
+        if (freePlay)
+        {
+            livesRemainingText.text = "Free Play Mode";
+        }
+        else
+        {
+            livesRemainingText.text = lives.ToString();
+        }
+    }
+
+    void EndGame()
+    {
+        gameEnded = true;
+        gameOverUI.SetActive(true);
     }
 }

@@ -10,11 +10,11 @@ public class MapGeneration : MonoBehaviour
     public GameObject waypoint;
     public GameObject startPoint;
 
-    public const int MATRIX_COLUMNS = 11;
+    public const int MATRIX_COLUMNS = 13;
     public const int MATRIX_ROWS = 11;
     public float spacing = 4f;
     int[,] matrix = new int[MATRIX_COLUMNS, MATRIX_ROWS];
-    int minTiles = 45; //49 works in half decent time, 40 fast and decent, 50 long but possible
+    float minTiles = ((float)(MATRIX_COLUMNS - 2) * (float)(MATRIX_ROWS - 2)) / 1.8f;
     List<(int,int)> list = new List<(int, int)>();
 
     int tiles = 0;
@@ -34,6 +34,7 @@ public class MapGeneration : MonoBehaviour
 
     private void Awake()
     {
+        //Debug.Log("minTiles: " + minTiles);
         (i,j) = randomStart(MATRIX_COLUMNS, MATRIX_ROWS);
         matrix[i, j] = 1;
         tiles++;
@@ -98,9 +99,7 @@ public class MapGeneration : MonoBehaviour
             {
                 finished = true;
                 accepted = true;
-
-                Debug.Log("Tiles: " + tiles);
-                Debug.Log("minTiles: " + minTiles);
+                //Debug.Log("Tiles: " + tiles);
             }
             else
             {
@@ -155,11 +154,11 @@ public class MapGeneration : MonoBehaviour
             (x4, y4) = list[i];
             if (i == 0)
             {
-                Instantiate(startPoint, new Vector3(x4 * spacing, 1.5f, y4 * spacing), Quaternion.Euler(0, 0, 0));
+                Instantiate(startPoint, new Vector3(x4 * spacing, -0.6f, y4 * spacing), Quaternion.Euler(0, 0, 0));
             }
             else
             {
-                var myNewWayPoint = Instantiate(waypoint, new Vector3(x4 * spacing, 1.5f, y4 * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Waypoints").transform);
+                var myNewWayPoint = Instantiate(waypoint, new Vector3(x4 * spacing, -0.6f, y4 * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Waypoints").transform);
             }
             
         }      
