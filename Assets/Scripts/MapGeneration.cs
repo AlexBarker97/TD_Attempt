@@ -6,7 +6,10 @@ public class MapGeneration : MonoBehaviour
 {
     public GameObject gnd1;
     public GameObject gnd2;
+    public GameObject dirt;
     public GameObject water;
+    public GameObject tree;
+    public GameObject mountain;
     public GameObject waypoint;
     public GameObject startPoint;
     public Transform StartPortal;
@@ -128,6 +131,33 @@ public class MapGeneration : MonoBehaviour
             */
         }
 
+        for (int x = 1; x < MATRIX_COLUMNS - 1; x++)
+        {
+            for (int y = 1; y < MATRIX_ROWS - 1; y++)
+            {
+                if (matrix[x, y] == 0)
+                {
+                    if ((matrix[x - 1, y] == 1) & (matrix[x + 1, y] == 1) & (matrix[x, y - 1] == 1) & (matrix[x, y + 1] == 1))
+                    {
+                        matrix[x, y] = 2;
+                    }
+                }
+                if (matrix[x, y] == 0)
+                {
+                    int rand;
+                    rand = Random.Range(0, 8);
+                    if (rand == 0)
+                    {
+                        matrix[x, y] = 3;
+                    }
+                    if (rand == 1)
+                    {
+                        matrix[x, y] = 4;
+                    }
+                }
+            }
+        }
+
         for (int x = 0; x < MATRIX_COLUMNS; x++)
         {
             for (int y = 0; y < MATRIX_ROWS; y++)
@@ -147,8 +177,21 @@ public class MapGeneration : MonoBehaviour
                 {
                     Instantiate(water, new Vector3(x * spacing, -1.5f, y * spacing), Quaternion.Euler(0, 0, 0));
                 }
+                if (matrix[x, y] == 2)
+                {
+                    Instantiate(dirt, new Vector3(x * spacing, -0.6f, y * spacing), Quaternion.Euler(0, 0, 0));
+                }
+                if (matrix[x, y] == 3)
+                {
+                    Instantiate(mountain, new Vector3(x * spacing, 0f, y * spacing), Quaternion.Euler(0, 0, 0));
+                }
+                if (matrix[x, y] == 4)
+                {
+                    Instantiate(tree, new Vector3(x * spacing, 0f, y * spacing), Quaternion.Euler(0, 0, 0));
+                }
             }
         }
+
         for (int i = 0; i < list.Count; i++)
         {
             int x4;

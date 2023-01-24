@@ -763,7 +763,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gnd1: {fileID: 4663859973472991661, guid: a37f6035df25f2f4d815f3159fcd7656, type: 3}
   gnd2: {fileID: 4663859973472991661, guid: 4b2358166c7a10e4ea4f95c9df7ee410, type: 3}
+  dirt: {fileID: 988042002171594420, guid: 293d3e1a16fcb5548979b9322e9d6d28, type: 3}
   water: {fileID: 988042002171594420, guid: 1fea1919fc95292409945363412ea6c0, type: 3}
+  tree: {fileID: 4663859973472991661, guid: 02b050f9e7b138641a0e3527630a73e0, type: 3}
+  mountain: {fileID: 4663859973472991661, guid: c1b12396aabee3b4f8c82d5dd20dd544, type: 3}
   waypoint: {fileID: 8886500831316188256, guid: bda94cc35742ebc4caa09c75d7b51ff1, type: 3}
   startPoint: {fileID: 2518113722852432075, guid: fb7147eb9b6c9124b99555921678da27, type: 3}
   StartPortal: {fileID: 369711704628079845, guid: 7e5f8ff4ed42c8d438d092f2879567ae, type: 3}
