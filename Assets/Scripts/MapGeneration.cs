@@ -6,9 +6,9 @@ public class MapGeneration : MonoBehaviour
 {
     public GameObject gnd1;
     public GameObject gnd2;
-    public GameObject dirt;
+    public GameObject swamp;
     public GameObject water;
-    public GameObject tree;
+    public GameObject forest;
     public GameObject mountain;
     public GameObject waypoint;
     public GameObject startPoint;
@@ -131,6 +131,50 @@ public class MapGeneration : MonoBehaviour
             */
         }
 
+        //mountain, forest
+        for (int x = 0; x < MATRIX_COLUMNS; x++)
+        {
+            for (int y = 0; y < MATRIX_ROWS; y++)
+            {
+                if (matrix[x, y] == 0)
+                {
+                    int rand;
+                    rand = Random.Range(0, 15);
+                    if (rand == 0)
+                    {
+                        matrix[x, y] = 3; //mountain
+                    }
+                    if ((rand == 1)|(rand == 2)|(rand == 3)|(rand == 4)|(rand == 5)|(rand == 6))
+                    {
+                        matrix[x, y] = 4; //forest
+                    }
+                }
+            }
+        }
+
+        //start, finish, waypoint
+        for (int i = 0; i < list.Count; i++)
+        {
+            int x4;
+            int y4;
+            (x4, y4) = list[i];
+            if (i == 0)
+            {
+                matrix[x4, y4] = -2;
+                Instantiate(startPoint, new Vector3(x4 * spacing, -2f, y4 * spacing), Quaternion.Euler(0, 0, 0));
+                var myNewWayPoint = Instantiate(waypoint, new Vector3(x4 * spacing, 1f, y4 * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Waypoints").transform);
+            }
+            else if(i == list.Count - 1)
+            {
+                matrix[x4, y4] = -1;
+            }
+            else
+            {
+                var myNewWayPoint = Instantiate(waypoint, new Vector3(x4 * spacing, -0.6f, y4 * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Waypoints").transform);
+            }
+        }
+
+        //swamp
         for (int x = 1; x < MATRIX_COLUMNS - 1; x++)
         {
             for (int y = 1; y < MATRIX_ROWS - 1; y++)
@@ -142,19 +186,6 @@ public class MapGeneration : MonoBehaviour
                         matrix[x, y] = 2;
                     }
                 }
-                if (matrix[x, y] == 0)
-                {
-                    int rand;
-                    rand = Random.Range(0, 8);
-                    if (rand == 0)
-                    {
-                        matrix[x, y] = 3;
-                    }
-                    if (rand == 1)
-                    {
-                        matrix[x, y] = 4;
-                    }
-                }
             }
         }
 
@@ -162,16 +193,17 @@ public class MapGeneration : MonoBehaviour
         {
             for (int y = 0; y < MATRIX_ROWS; y++)
             {
+                if (matrix[x, y] == -2)
+                {
+                    Instantiate(StartPortal, new Vector3(x * spacing, -0.6f, y * spacing), Quaternion.Euler(0, 0, 0));
+                }
+                if (matrix[x, y] == -1)
+                {
+                    Instantiate(endPoint, new Vector3(x * spacing, 0.0f, y * spacing), Quaternion.Euler(0, 0, 0));
+                }
                 if (matrix[x, y] == 0)
                 {
-                    if ((x + y) % 2 == 0)
-                    {
-                        Instantiate(gnd1, new Vector3(x * spacing, 0.0f, y * spacing), Quaternion.Euler(0, 0, 0));
-                    }
-                    else
-                    {
-                        Instantiate(gnd2, new Vector3(x * spacing, 0.0f, y * spacing), Quaternion.Euler(0, 0, 0));
-                    }
+                    Instantiate(gnd1, new Vector3(x * spacing, 0.0f, y * spacing), Quaternion.Euler(0, 0, 0));
                 }
                 if (matrix[x, y] == 1)
                 {
@@ -179,37 +211,24 @@ public class MapGeneration : MonoBehaviour
                 }
                 if (matrix[x, y] == 2)
                 {
-                    Instantiate(dirt, new Vector3(x * spacing, -0.6f, y * spacing), Quaternion.Euler(0, 0, 0));
+                    Instantiate(swamp, new Vector3(x * spacing, -0.6f, y * spacing), Quaternion.Euler(0, 0, 0));
                 }
                 if (matrix[x, y] == 3)
                 {
-                    Instantiate(mountain, new Vector3(x * spacing, 0f, y * spacing), Quaternion.Euler(0, 0, 0));
+                    int rand;
+                    rand = Random.Range(0, 3);
+                    Instantiate(mountain, new Vector3(x * spacing, 0f, y * spacing), Quaternion.Euler(0, rand * 90, 0));
                 }
                 if (matrix[x, y] == 4)
                 {
-                    Instantiate(tree, new Vector3(x * spacing, 0f, y * spacing), Quaternion.Euler(0, 0, 0));
+                    int rand;
+                    rand = Random.Range(0, 3);
+                    Instantiate(forest, new Vector3(x * spacing, 0f, y * spacing), Quaternion.Euler(0, rand*90, 0));
                 }
             }
         }
-
-        for (int i = 0; i < list.Count; i++)
-        {
-            int x4;
-            int y4;
-            (x4, y4) = list[i];
-            if (i == 0)
-            {
-                Instantiate(startPoint, new Vector3(x4 * spacing, -2f, y4 * spacing), Quaternion.Euler(0, 0, 0));
-                var myNewWayPoint = Instantiate(waypoint, new Vector3(x4 * spacing, 1f, y4 * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Waypoints").transform);
-                Instantiate(StartPortal, new Vector3(x4 * spacing, -0.6f, y4 * spacing), Quaternion.Euler(0, 0, 0));
-            }
-            else
-            {
-                var myNewWayPoint = Instantiate(waypoint, new Vector3(x4 * spacing, -0.6f, y4 * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Waypoints").transform);
-            }
-        }
-        Instantiate(endPoint, new Vector3(i * spacing, 0.0f, j * spacing), Quaternion.Euler(0, 0, 0));
     }
+
     (int,int) randomStart(int MATRIX_COLUMNS, int MATRIX_ROWS)
     {
         int randStart;

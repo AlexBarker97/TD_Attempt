@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.45067072, g: 0.50063294, b: 0.5749282, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -762,11 +762,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gnd1: {fileID: 4663859973472991661, guid: a37f6035df25f2f4d815f3159fcd7656, type: 3}
-  gnd2: {fileID: 4663859973472991661, guid: 4b2358166c7a10e4ea4f95c9df7ee410, type: 3}
-  dirt: {fileID: 988042002171594420, guid: 293d3e1a16fcb5548979b9322e9d6d28, type: 3}
+  gnd2: {fileID: 4663859973472991661, guid: 36c10ad2a7007d94dbd6c6ba826aeac9, type: 3}
+  swamp: {fileID: 988042002171594420, guid: 293d3e1a16fcb5548979b9322e9d6d28, type: 3}
   water: {fileID: 988042002171594420, guid: 1fea1919fc95292409945363412ea6c0, type: 3}
-  tree: {fileID: 4663859973472991661, guid: 02b050f9e7b138641a0e3527630a73e0, type: 3}
-  mountain: {fileID: 4663859973472991661, guid: c1b12396aabee3b4f8c82d5dd20dd544, type: 3}
+  forest: {fileID: 4663859973472991661, guid: 7e1e9e0e1bebfc6468d1423219ac6e60, type: 3}
+  mountain: {fileID: 4663859973472991661, guid: 36c10ad2a7007d94dbd6c6ba826aeac9, type: 3}
   waypoint: {fileID: 8886500831316188256, guid: bda94cc35742ebc4caa09c75d7b51ff1, type: 3}
   startPoint: {fileID: 2518113722852432075, guid: fb7147eb9b6c9124b99555921678da27, type: 3}
   StartPortal: {fileID: 369711704628079845, guid: 7e5f8ff4ed42c8d438d092f2879567ae, type: 3}
@@ -2501,13 +2501,13 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -2558,13 +2558,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573009416}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 2000, y: 6000, z: -2000}
+  m_LocalRotation: {x: 0.4394784, y: 0.018564014, z: 0.5750642, w: 0.6897937}
+  m_LocalPosition: {x: 16.66, y: 47.07, z: -1.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 35.799, y: 40.902, z: 93.37}
 --- !u!1 &1624128673
 GameObject:
   m_ObjectHideFlags: 0
@@ -2720,13 +2720,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633383415}
-  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
-  m_LocalPosition: {x: 29.62, y: 36, z: 4.99}
+  m_LocalRotation: {x: 0.49502072, y: -0, z: -0, w: 0.8688812}
+  m_LocalPosition: {x: 28.61, y: 35.29, z: -2.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 59.342, y: 0, z: 0}
 --- !u!1 &1665541541
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 631965268187134452}
   - component: {fileID: 5657061232826766285}
   - component: {fileID: 2785810092305301692}
+  - component: {fileID: 8857619035160225738}
   m_Layer: 0
-  m_Name: GndNode2
+  m_Name: GndNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c7d068f35ffe8124abb018b1f4509ffa, type: 2}
+  - {fileID: 2100000, guid: 0de9ef172147c284d95e2c597626688f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,6 +97,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8857619035160225738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4663859973472991661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef43833e98890f4486f9aea15225db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3324382373725457244
 PrefabInstance:
   m_ObjectHideFlags: 0
