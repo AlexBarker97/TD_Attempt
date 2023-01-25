@@ -195,35 +195,35 @@ public class MapGeneration : MonoBehaviour
             {
                 if (matrix[x, y] == -2)
                 {
-                    Instantiate(StartPortal, new Vector3(x * spacing, -0.6f, y * spacing), Quaternion.Euler(0, 0, 0));
+                    Instantiate(StartPortal, new Vector3(x * spacing, -0.6f, y * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Nodes").transform);
                 }
                 if (matrix[x, y] == -1)
                 {
-                    Instantiate(endPoint, new Vector3(x * spacing, 0.0f, y * spacing), Quaternion.Euler(0, 0, 0));
+                    Instantiate(endPoint, new Vector3(x * spacing, 0.0f, y * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Nodes").transform);
                 }
                 if (matrix[x, y] == 0)
                 {
-                    Instantiate(gnd1, new Vector3(x * spacing, 0.0f, y * spacing), Quaternion.Euler(0, 0, 0));
+                    Instantiate(gnd1, new Vector3(x * spacing, 0.0f, y * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Nodes").transform);
                 }
                 if (matrix[x, y] == 1)
                 {
-                    Instantiate(water, new Vector3(x * spacing, -1.5f, y * spacing), Quaternion.Euler(0, 0, 0));
+                    Instantiate(water, new Vector3(x * spacing, -1.5f, y * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Nodes").transform);
                 }
                 if (matrix[x, y] == 2)
                 {
-                    Instantiate(swamp, new Vector3(x * spacing, -0.6f, y * spacing), Quaternion.Euler(0, 0, 0));
+                    Instantiate(swamp, new Vector3(x * spacing, -1f, y * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Nodes").transform);
                 }
                 if (matrix[x, y] == 3)
                 {
                     int rand;
                     rand = Random.Range(0, 3);
-                    Instantiate(mountain, new Vector3(x * spacing, 0f, y * spacing), Quaternion.Euler(0, rand * 90, 0));
+                    Instantiate(mountain, new Vector3(x * spacing, 0f, y * spacing), Quaternion.Euler(0, rand * 90, 0), GameObject.Find("Nodes").transform);
                 }
                 if (matrix[x, y] == 4)
                 {
                     int rand;
                     rand = Random.Range(0, 3);
-                    Instantiate(forest, new Vector3(x * spacing, 0f, y * spacing), Quaternion.Euler(0, rand*90, 0));
+                    Instantiate(forest, new Vector3(x * spacing, 0f, y * spacing), Quaternion.Euler(0, rand*90, 0), GameObject.Find("Nodes").transform);
                 }
             }
         }

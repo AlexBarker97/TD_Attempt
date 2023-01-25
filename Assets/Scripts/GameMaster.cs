@@ -7,7 +7,7 @@ public class GameMaster : MonoBehaviour
 {
     public GameObject MenuUI;
     public Text wavesSurvivedText;
-    private bool gamePaused = false;
+    public bool gamePaused = false;
     private bool gameEnded;
     private int waves;
     void MenuButton()
