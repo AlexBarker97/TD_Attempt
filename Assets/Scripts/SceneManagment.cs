@@ -22,6 +22,6 @@ public class SceneManagment : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log(SceneManager.sceneCount);
+        //Debug.Log(SceneManager.sceneCount);
     }
 }

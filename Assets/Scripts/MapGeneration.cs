@@ -167,6 +167,7 @@ public class MapGeneration : MonoBehaviour
             else if(i == list.Count - 1)
             {
                 matrix[x4, y4] = -1;
+                var myNewWayPoint = Instantiate(waypoint, new Vector3(x4 * spacing, -0.6f, y4 * spacing), Quaternion.Euler(0, 0, 0), GameObject.Find("Waypoints").transform);
             }
             else
             {

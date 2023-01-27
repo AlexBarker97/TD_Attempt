@@ -10,6 +10,9 @@ public class GameMaster : MonoBehaviour
     public bool gamePaused = false;
     private bool gameEnded;
     private int waves;
+    public int startingMoney = 100;
+    public int startingLives = 1;
+
     void MenuButton()
     {
         gamePaused = true;

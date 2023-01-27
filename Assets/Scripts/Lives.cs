@@ -16,13 +16,13 @@ public class Lives : MonoBehaviour
     void Awake()
     {
         enemy = enemyInstance.GetComponent<Enemy>();
-        lives = 1;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         gameEnded = false;
+        lives = gameObject.GetComponent<GameMaster>().startingLives;
     }
 
     // Update is called once per frame
