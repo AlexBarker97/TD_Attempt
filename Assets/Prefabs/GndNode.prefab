@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0de9ef172147c284d95e2c597626688f, type: 2}
+  - {fileID: 2100000, guid: 2bbc7aac1c099294f92740e1ef2d3b6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,6 +123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.06587124, g: 1, b: 0, a: 0}
+  Turret1Ghost: {fileID: 1855509885897811091, guid: db60c50a5768b504b9e1eaea9b0f19fc, type: 3}
+  Turret1Real: {fileID: 1855509885897811091, guid: 21d9919c363a4d34ea1528d002673588, type: 3}
+  gndTurret: 0
 --- !u!1001 &3324382373725457244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -139,24 +142,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5690883601589191086, guid: 01e141831c7a07741989a065c2f40a14, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690883601589191086, guid: 01e141831c7a07741989a065c2f40a14, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690883601589191086, guid: 01e141831c7a07741989a065c2f40a14, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690883601589191086, guid: 01e141831c7a07741989a065c2f40a14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5690883601589191086, guid: 01e141831c7a07741989a065c2f40a14, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.75
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5690883601589191086, guid: 01e141831c7a07741989a065c2f40a14, type: 3}
       propertyPath: m_LocalPosition.z

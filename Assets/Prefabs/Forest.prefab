@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5657061232826766285}
   - component: {fileID: 2785810092305301692}
   - component: {fileID: 8857619035160225738}
+  - component: {fileID: 1017097731326960368}
   m_Layer: 0
   m_Name: Forest
   m_TagString: Untagged
@@ -111,6 +112,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef43833e98890f4486f9aea15225db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1017097731326960368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4663859973472991661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aac7075d0aceeb409080cb001fddeda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverColor: {r: 0, g: 0, b: 0, a: 0}
+  Turret1Ghost: {fileID: 1855509885897811091, guid: db60c50a5768b504b9e1eaea9b0f19fc, type: 3}
+  Turret1Real: {fileID: 1855509885897811091, guid: 21d9919c363a4d34ea1528d002673588, type: 3}
+  gndTurret: 0
 --- !u!1001 &888721257137752407
 PrefabInstance:
   m_ObjectHideFlags: 0
