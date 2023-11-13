@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 182806311}
   - component: {fileID: 182806310}
   - component: {fileID: 182806313}
+  - component: {fileID: 182806314}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -279,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2edec7b791817a943b12d963733503e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 1
+  lives: 5
   livesRemainingText: {fileID: 762950697}
   gameOverUI: {fileID: 565919710}
   gameEnded: 0
@@ -297,7 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 5284899866500364622, guid: 86e7c5a2c5987ac468683a22f9ff9fd2, type: 3}
-  timeBetweenWaves: 5
+  timeBetweenWaves: 10
   waveCountdownText: {fileID: 1992489}
   wavesSpawned: 0
 --- !u!4 &182806312
@@ -329,8 +330,25 @@ MonoBehaviour:
   MenuUI: {fileID: 356970294}
   wavesSurvivedText: {fileID: 263295971}
   gamePaused: 0
-  startingMoney: 1000
-  startingLives: 1
+  startingMoney: 200
+  remainingMoney: 200
+  startingLives: 5
+--- !u!114 &182806314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182806309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded2e554bc8f38c4e96a2134c250ce3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 0
+  moneyRemainingText: {fileID: 2122406843}
+  gameOverUI: {fileID: 565919710}
+  enemyInstance: {fileID: 8588939033430859495, guid: 86e7c5a2c5987ac468683a22f9ff9fd2, type: 3}
 --- !u!1 &208226030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,14 +1028,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9f983c03047274f800eeef0ac85696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cash: 0
-  cashRemainingText: {fileID: 2122406843}
+  money: 0
   Turret1Ghost: {fileID: 1855509885897811091, guid: db60c50a5768b504b9e1eaea9b0f19fc, type: 3}
   Turret1Real: {fileID: 1855509885897811091, guid: 21d9919c363a4d34ea1528d002673588, type: 3}
   T1Cost: 100
   state: 0
   turret: nil
-  flag1: 0
 --- !u!1 &501333381
 GameObject:
   m_ObjectHideFlags: 0
@@ -4027,7 +4043,7 @@ PrefabInstance:
     - target: {fileID: 6806077663984013847, guid: e3837cf5c4ab02a498c52d8fea913880, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 458917980}
+      objectReference: {fileID: 0}
     - target: {fileID: 6806077663984013847, guid: e3837cf5c4ab02a498c52d8fea913880, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

@@ -33,9 +33,9 @@ public class Node : MonoBehaviour
 
 	void OnMouseOver()
 	{
-		Debug.Log(GameObject.Find("Shop").GetComponent<Shop>().state);
-		Debug.Log(rend.gameObject.name);
-		if ((GameObject.Find("Shop").GetComponent<Shop>().state == 2) & ((rend.gameObject.name == "GndNode(Clone)")|(rend.gameObject.name == "Cylinder")))
+		//Debug.Log(GameObject.Find("Shop").GetComponent<Shop>().state);
+		//Debug.Log(rend.gameObject.name);
+		if ((GameObject.Find("Shop").GetComponent<Shop>().state == 2) & ((rend.gameObject.name == "GndNode(Clone)")|(rend.gameObject.name == "Turret1")))
         {
 			if (Input.GetMouseButtonDown(1))
 			{
@@ -50,6 +50,6 @@ public class Node : MonoBehaviour
 
 	void OnMouseExit()
 	{
-	}
 
+	}
 }

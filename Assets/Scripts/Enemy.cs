@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     Lives lives;
-
+    Money money;
     public float startSpeed = 10f;
     public float speed;
     public float startHealth = 100f;
@@ -18,10 +18,12 @@ public class Enemy : MonoBehaviour
 
     [Header("Unity Stuff")]
     public Image healthBar;
+    private bool isDead = false;
 
     void Awake()
     {
         lives = GameObject.Find("GameMaster").GetComponent<Lives>();
+        money = GameObject.Find("GameMaster").GetComponent<Money>();
     }
 
     void Start()
@@ -40,13 +42,6 @@ public class Enemy : MonoBehaviour
         {
             GetNextWaypoint();
         }
-        health = health - 0.006f;
-        healthBar.fillAmount = health / startHealth;
-
-        if (health <= 0)
-        {
-            Die("health <= 0");
-        }
     }
 
     void GetNextWaypoint()
@@ -54,20 +49,37 @@ public class Enemy : MonoBehaviour
         if (wavepointIndex >= Waypoints.points.Length - 1)
         {
             Die("gotToEnd");
-            return;
+            Destroy(gameObject);
         }
 
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
     }
 
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+
+        healthBar.fillAmount = health / startHealth;
+
+        if (health <= 0 && !isDead)
+        {
+            Die("killed");
+            Destroy(gameObject);
+        }
+    }
+
     void Die(string cause)
     {
-        Destroy(gameObject);
+        isDead = true;
         if (cause == "gotToEnd")
         {
             lives.lives--;
         }
+        if (cause == "killed")
+        {
+            money.money++;
+        }
+        return;
     }
-
 }

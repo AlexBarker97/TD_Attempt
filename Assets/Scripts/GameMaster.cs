@@ -10,8 +10,16 @@ public class GameMaster : MonoBehaviour
     public bool gamePaused = false;
     private bool gameEnded;
     private int waves;
-    public int startingMoney = 100;
-    public int startingLives = 1;
+    public int startingMoney = 200;
+    private int remainingMoney = 200;
+    public int startingLives = 5;
+    private int remainingLives = 0;
+
+    void Start()
+    {
+        remainingLives = startingLives;
+        remainingMoney = startingMoney;
+    }
 
     void MenuButton()
     {

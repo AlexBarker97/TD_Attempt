@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    public int cash;
-    public Text cashRemainingText;
+    Money money;
     public GameObject Turret1Ghost;
     public GameObject Turret1Real;
     public int T1Cost = 100;
@@ -13,31 +12,30 @@ public class Shop : MonoBehaviour
     public string turret = "nil";   //will spawn based on turret selected
     private Vector3 pos;
 
-    void Start()
+    void Awake()
     {
-        cash = GameObject.Find("GameMaster").GetComponent<GameMaster>().startingMoney;
+        money = GameObject.Find("GameMaster").GetComponent<Money>();
     }
 
     public void PurchaseTurret1()
     {
-        Debug.Log("Purchase Turret 1");
+        //Debug.Log("Purchase Turret 1");
         if (state == 0)
         {
             state = 1;
         }
     }
 
-void Update()
+    void Update()
     {
         //Debug.Log(state);
-        cashRemainingText.text = cash.ToString();
         switch (state)
         {
             case 0:
                 //calculated in PurchaseTurret1()
                 break;
             case 1:
-                if(cash>=T1Cost)
+                if(Money.money >= T1Cost)
                 {
                     Instantiate(Turret1Ghost, new Vector3(0f, 0f, 0f), Quaternion.Euler(0, 0, 0));
                     state = 2;
@@ -59,9 +57,8 @@ void Update()
                 pos = GameObject.Find("Turret1ghost(Clone)").transform.position;
                 Instantiate(Turret1Real, pos, Quaternion.Euler(0, 0, 0));
                 Destroy(GameObject.Find("Turret1ghost(Clone)"));
-                cash = cash - T1Cost;
+                Money.money -= T1Cost;
                 state = 0;
-                //System.Threading.Thread.Sleep(10000);
                 break;
         }
     }
