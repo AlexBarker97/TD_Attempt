@@ -28,6 +28,7 @@ public class Shop : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(money.cash);
         //Debug.Log(state);
         switch (state)
         {
@@ -35,7 +36,7 @@ public class Shop : MonoBehaviour
                 //calculated in PurchaseTurret1()
                 break;
             case 1:
-                if(Money.money >= T1Cost)
+                if(money.cash >= T1Cost)
                 {
                     Instantiate(Turret1Ghost, new Vector3(0f, 0f, 0f), Quaternion.Euler(0, 0, 0));
                     state = 2;
@@ -57,7 +58,7 @@ public class Shop : MonoBehaviour
                 pos = GameObject.Find("Turret1ghost(Clone)").transform.position;
                 Instantiate(Turret1Real, pos, Quaternion.Euler(0, 0, 0));
                 Destroy(GameObject.Find("Turret1ghost(Clone)"));
-                Money.money -= T1Cost;
+                money.cash -= T1Cost;
                 state = 0;
                 break;
         }

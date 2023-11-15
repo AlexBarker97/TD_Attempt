@@ -3,8 +3,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Transform target;
-    private float speed = 20f;
-    private int damage = 50;
+    private float speed = 25f;
+    private int damage = 35;
 
     public void Seek(Transform _target)
     {

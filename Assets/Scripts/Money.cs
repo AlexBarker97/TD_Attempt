@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Money : MonoBehaviour
 {
-    public int money;
+    public int cash;
     public Text moneyRemainingText;
     public GameObject gameOverUI;
     bool freePlay = false;
@@ -12,7 +12,7 @@ public class Money : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        money = gameObject.GetComponent<GameMaster>().startingMoney;
+        cash = gameObject.GetComponent<GameMaster>().startingMoney;
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class Money : MonoBehaviour
         }
         else
         {
-            moneyRemainingText.text = money.ToString();
+            moneyRemainingText.text = cash.ToString();
         }
     }
 }
