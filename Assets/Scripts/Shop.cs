@@ -11,7 +11,7 @@ public class Shop : MonoBehaviour
     public GameObject Turret2Real;
     public int T1Cost = 100;
     public int T2Cost = 250;
-    public int state = 0;
+    public string state = "Ready";
     public string turret = "nil";   //will spawn based on turret selected
     private Vector3 pos;
 
@@ -23,20 +23,20 @@ public class Shop : MonoBehaviour
     public void PurchaseTurret1()
     {
         //Debug.Log("Purchase Turret 1");
-        if (state == 0)
+        if (state == "Ready")
         {
             turret = "1";
-            state = 1;
+            state = "MoneyCheck";
         }
     }
 
     public void PurchaseTurret2()
     {
         //Debug.Log("Purchase Turret 2");
-        if (state == 0)
+        if (state == "Ready")
         {
             turret = "2";
-            state = 1;
+            state = "MoneyCheck";
         }
     }
 
@@ -46,10 +46,11 @@ public class Shop : MonoBehaviour
         //Debug.Log(state);
         switch (state)
         {
-            case 0:
+            case "Ready":
                 //calculated in PurchaseTurret1()
                 break;
-            case 1:
+
+            case "MoneyCheck":
                 if(money.cash >= T1Cost)
                 {
                     if (turret == "1")
@@ -60,18 +61,20 @@ public class Shop : MonoBehaviour
                     {
                         Instantiate(Turret2Ghost, new Vector3(0f, 2f, 0f), Quaternion.Euler(0, 0, 0));
                     }
-                    state = 2;
+                    state = "Placement";
                 }
                 else
                 {
-                    state = 0;
+                    state = "Ready";
                     //playsound wah
                 }
                 break;
-            case 2:
+
+            case "Placement":
                     //calculated in Node.cs
                 break;
-            case 3:
+
+            case "Cancel":
                 if (turret == "1")
                 {
                     Destroy(GameObject.Find("Turret1ghost(Clone)"));
@@ -80,9 +83,10 @@ public class Shop : MonoBehaviour
                 {
                     Destroy(GameObject.Find("Turret2ghost(Clone)"));
                 }
-                state = 0;
+                state = "Ready";
                 break;
-            case 4:
+
+            case "Actualisation":
                 if (turret == "1")
                 {
                     pos = GameObject.Find("Turret1ghost(Clone)").transform.position;
@@ -97,7 +101,7 @@ public class Shop : MonoBehaviour
                     Destroy(GameObject.Find("Turret2ghost(Clone)"));
                     money.cash -= T1Cost;
                 }
-                state = 0;
+                state = "Ready";
                 turret = "nil";
                 break;
         }

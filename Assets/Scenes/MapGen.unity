@@ -1033,7 +1033,7 @@ MonoBehaviour:
   Turret2Real: {fileID: 1855509885897811091, guid: ea472a1dd2a6c8b40ae6c0a3818f9630, type: 3}
   T1Cost: 100
   T2Cost: 250
-  state: 0
+  state: Ready
   turret: nil
 --- !u!1 &501333381
 GameObject:

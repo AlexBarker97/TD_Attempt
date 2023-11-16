@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RandomColoredMaterial : MonoBehaviour
 {
-
     void Start()
     {
         Material generatedMaterial = new Material(Shader.Find("Standard"));

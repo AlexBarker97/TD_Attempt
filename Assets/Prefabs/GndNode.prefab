@@ -125,6 +125,8 @@ MonoBehaviour:
   hoverColor: {r: 0.06587124, g: 1, b: 0, a: 0}
   Turret1Ghost: {fileID: 1855509885897811091, guid: db60c50a5768b504b9e1eaea9b0f19fc, type: 3}
   Turret1Real: {fileID: 1855509885897811091, guid: 21d9919c363a4d34ea1528d002673588, type: 3}
+  Turret2Ghost: {fileID: 1855509885897811091, guid: 1bd5f709bd16bae4d8a394caa3a59b08, type: 3}
+  Turret2Real: {fileID: 1855509885897811091, guid: ea472a1dd2a6c8b40ae6c0a3818f9630, type: 3}
   gndTurret: 0
 --- !u!1001 &3324382373725457244
 PrefabInstance:
