@@ -8,7 +8,9 @@ public class Node : MonoBehaviour
 	private Color startColor;
 	public GameObject Turret1Ghost;
 	public GameObject Turret1Real;
-	public bool gndTurret = false;
+    public GameObject Turret2Ghost;
+    public GameObject Turret2Real;
+    public bool gndTurret = false;
 	private GameObject Old;
 	
 

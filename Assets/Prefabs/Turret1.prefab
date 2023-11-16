@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010bc44e6c240b54cb170c5ca3d52ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 35
+  bulletSpeed: 20
   range: 10
   fireRate: 1
   enemyTag: Enemy
@@ -63,7 +65,7 @@ GameObject:
   - component: {fileID: 7242454676661112264}
   - component: {fileID: 182192508544830555}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: TurretModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -22,6 +22,7 @@ public class Money : MonoBehaviour
         if (freePlay)
         {
             moneyRemainingText.text = "Free Play Mode";
+            cash = 9999999;
         }
         else
         {

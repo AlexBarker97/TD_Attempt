@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private Transform target;
-    private float speed = 25f;
-    private int damage = 35;
+    public Transform target;
+    public float bulletSpeed;
+    public float damage;
 
+    void Start()
+    {
+        bulletSpeed = this.transform.parent.gameObject.GetComponent<Turret1>().bulletSpeed;
+        damage = this.transform.parent.gameObject.GetComponent<Turret1>().damage;
+    }
+    
     public void Seek(Transform _target)
     {
         target = _target;
@@ -21,7 +27,7 @@ public class Bullet : MonoBehaviour
         }
 
         Vector3 dir = target.position - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
+        float distanceThisFrame = bulletSpeed * Time.deltaTime;
 
         if (dir.magnitude <= distanceThisFrame)
         {

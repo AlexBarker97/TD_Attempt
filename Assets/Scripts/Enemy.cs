@@ -50,6 +50,7 @@ public class Enemy : MonoBehaviour
         {
             Die("gotToEnd");
             Destroy(gameObject);
+            return;
         }
 
         wavepointIndex++;
