@@ -1,4 +1,5 @@
 # Auto detect text files and perform LF normalization
 *.ASP.NET linguist-detectable=false
+*ASP.NET linguist-detectable=false
 *.NET linguist-detectable=false
 *.cs linguist-detectable=true
