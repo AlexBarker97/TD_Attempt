@@ -129,7 +129,12 @@ MonoBehaviour:
   Turret1Real: {fileID: 1855509885897811091, guid: 21d9919c363a4d34ea1528d002673588, type: 3}
   Turret2Ghost: {fileID: 1855509885897811091, guid: 1bd5f709bd16bae4d8a394caa3a59b08, type: 3}
   Turret2Real: {fileID: 1855509885897811091, guid: ea472a1dd2a6c8b40ae6c0a3818f9630, type: 3}
+  GndNode: {fileID: 4663859973472991661, guid: a37f6035df25f2f4d815f3159fcd7656, type: 3}
+  MontNode: {fileID: 4663859973472991661, guid: 36c10ad2a7007d94dbd6c6ba826aeac9, type: 3}
+  place: 
   gndTurret: 0
+  ObjName: 
+  ObjPos: {x: 0, y: 0, z: 0}
 --- !u!1001 &888721257137752407
 PrefabInstance:
   m_ObjectHideFlags: 0

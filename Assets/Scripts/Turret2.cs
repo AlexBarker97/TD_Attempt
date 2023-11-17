@@ -7,7 +7,7 @@ public class Turret2 : MonoBehaviour
 
     [Header("Attributes")]
 
-    public float damage = 150f;
+    public float damage = 50f;
     public float bulletSpeed = 50f;
     public float range = 100f;
     public float size = 0.4f;
@@ -25,7 +25,7 @@ public class Turret2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        InvokeRepeating("UpdateTarget", 0f, 0.1f);
     }
 
     // Update is called once per frame

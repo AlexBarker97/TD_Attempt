@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010bc44e6c240b54cb170c5ca3d52ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 150
+  damage: 50
   bulletSpeed: 50
   range: 100
   size: 0.4
@@ -164,4 +164,6 @@ MonoBehaviour:
   hoverColor: {r: 0, g: 0, b: 0, a: 0}
   Turret1Ghost: {fileID: 1855509885897811091, guid: db60c50a5768b504b9e1eaea9b0f19fc, type: 3}
   Turret1Real: {fileID: 1855509885897811091}
+  Turret2Ghost: {fileID: 0}
+  Turret2Real: {fileID: 0}
   gndTurret: 0

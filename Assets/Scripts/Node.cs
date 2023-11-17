@@ -3,18 +3,33 @@ using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour
 {
-	public Color hoverColor;
+
+    Money money;
+    public Color hoverColor;
 	private Renderer rend;
 	private Color startColor;
 	public GameObject Turret1Ghost;
 	public GameObject Turret1Real;
     public GameObject Turret2Ghost;
     public GameObject Turret2Real;
+    public GameObject GndNode;
+    public GameObject MontNode;
+    private int swampClearCost = 1000;
+    private int montClearCost = 500;
+    private int forestClearCost = 250;
+
+    public string place;
     public bool gndTurret = false;
 	private GameObject Old;
-	
+    public string ObjName;
+    public Vector3 ObjPos;
 
-	void Start()
+    void Awake()
+    {
+        money = GameObject.Find("GameMaster").GetComponent<Money>();
+    }
+
+    void Start()
 	{
 		rend = GetComponent<Renderer>();
 		startColor = rend.material.color;
@@ -22,48 +37,111 @@ public class Node : MonoBehaviour
 
 	void OnMouseEnter()
 	{
-		//Debug.Log(rend.material.color);
-		rend.material.SetColor("_Color", rend.material.color+ new Color(0.3f, 0.3f, 0.3f, 0f));
+		rend.material.SetColor("_Color", startColor + new Color(0.3f, 0.3f, 0.3f, 0f));
+        place = GameObject.Find("Shop").GetComponent<Shop>().turret;
+
         if (rend.gameObject.name == "GndNode(Clone)")
         {
-			Debug.Log(GameObject.Find("Shop").GetComponent<Shop>().turret);
-            if (GameObject.Find("Shop").GetComponent<Shop>().turret == "1")
-			{
-                Instantiate(Turret1Ghost, rend.gameObject.transform.position + new Vector3(0f, 1.5f, 0f), Quaternion.Euler(0, 0, 0));
-                Old = rend.gameObject;
-                if (Old.name == "GndNode(Clone)")
-                {
-                    Destroy(GameObject.Find("Turret1ghost(Clone)"));
-                }
-            } else if (GameObject.Find("Shop").GetComponent<Shop>().turret == "2")
-			{
-                Instantiate(Turret2Ghost, rend.gameObject.transform.position + new Vector3(0f, 1.5f, 0f), Quaternion.Euler(0, 0, 0));
-                Old = rend.gameObject;
-                if (Old.name == "GndNode(Clone)")
-                {
-                    Destroy(GameObject.Find("Turret2ghost(Clone)"));
-                }
+            switch (place)
+            {
+                case "1":
+                    Instantiate(Turret1Ghost, rend.gameObject.transform.position + new Vector3(0f, 1.5f, 0f), Quaternion.Euler(0, 0, 0));
+                    Old = rend.gameObject;
+                    if (Old.name == "GndNode(Clone)")
+                    {
+                        Destroy(GameObject.Find("Turret1ghost(Clone)"));
+                    }
+                    break;
+
+                case "2":
+                    Instantiate(Turret2Ghost, rend.gameObject.transform.position + new Vector3(0f, 1.5f, 0f), Quaternion.Euler(0, 0, 0));
+                    Old = rend.gameObject;
+                    if (Old.name == "GndNode(Clone)")
+                    {
+                        Destroy(GameObject.Find("Turret2ghost(Clone)"));
+                    }
+                    break;
+
+                case "nil":
+                    // code nil
+                    break;
             }
         }
 	}
 
 	void OnMouseOver()
 	{
-		if ((GameObject.Find("Shop").GetComponent<Shop>().state == "Placement") & ((rend.gameObject.name == "GndNode(Clone)")|(rend.gameObject.name == "Turret1(Clone)")|(rend.gameObject.name == "Turret2(Clone)")))
+        place = GameObject.Find("Shop").GetComponent<Shop>().turret;
+        ObjName = rend.gameObject.name;
+        ObjPos = rend.gameObject.transform.position;
+
+        if ((GameObject.Find("Shop").GetComponent<Shop>().state == "Ready") & (place == "nil"))
         {
-			if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0)) // leftclick
+            {
+                //Debug.Log("left");
+                //Debug.Log(ObjName);
+                switch (ObjName)
+                {
+                    case "Swamp(Clone)":
+                        if(money.cash >= swampClearCost)
+                        {
+                            money.cash -= swampClearCost;
+                            Instantiate(GndNode, ObjPos + new Vector3(0, 1, 0), Quaternion.Euler(0, 0, 0));
+                            Destroy(rend.gameObject);
+                        }else
+                        {
+                            //wah
+                        }
+                        break;
+
+                    case "Mountain(Clone)":
+                        if (money.cash >= montClearCost)
+                        {
+                            money.cash -= montClearCost;
+                            Instantiate(GndNode, ObjPos + new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+                            Destroy(rend.gameObject);
+                        }else
+                        {
+                            //wah
+                        }
+                        break;
+
+                    case "Forest(Clone)":
+                        if (money.cash >= forestClearCost)
+                        {
+                            money.cash -= forestClearCost;
+                            Instantiate(GndNode, ObjPos + new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+                            Destroy(rend.gameObject);
+                        }else
+                        {
+                            //wah
+                        }
+                        break;
+                }
+                if (Input.GetMouseButtonDown(1)) // rightclick
+                {
+                    //Debug.Log("right");
+                    //Debug.Log(ObjName);
+                }
+            }
+        }
+
+        if ((GameObject.Find("Shop").GetComponent<Shop>().state == "Placement") & ((ObjName == "GndNode(Clone)")|(ObjName == "Turret1(Clone)")|(ObjName == "Turret2(Clone)")))
+        {
+            if (Input.GetMouseButtonDown(0)) // leftclick
+            {
+                GameObject.Find("Shop").GetComponent<Shop>().state = "Actualisation";
+            }
+            if (Input.GetMouseButtonDown(1)) // rightclick
 			{
 				GameObject.Find("Shop").GetComponent<Shop>().state = "Cancel";
-			}
-			if (Input.GetMouseButtonDown(0))
-			{
-				GameObject.Find("Shop").GetComponent<Shop>().state = "Actualisation";
 			}
 		}
 	}
 
 	void OnMouseExit()
 	{
-        rend.material.SetColor("_Color", rend.material.color - new Color(0.3f, 0.3f, 0.3f, 0f));
+        rend.material.SetColor("_Color", startColor);
     }
 }
