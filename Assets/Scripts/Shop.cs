@@ -9,10 +9,14 @@ public class Shop : MonoBehaviour
     public GameObject Turret1Real;
     public GameObject Turret2Ghost;
     public GameObject Turret2Real;
+    public GameObject Turret3Ghost;
+    public GameObject Turret3Real;
     public int T1Cost = 100;
-    public int T2Cost = 250;
+    public int T2Cost = 100;
+    public int T3Cost = 100;
     public string state = "Ready";
     public string turret = "nil";   //will spawn based on turret selected
+    public bool excavateToggle = false;
     private Vector3 pos;
 
     void Awake()
@@ -40,10 +44,38 @@ public class Shop : MonoBehaviour
         }
     }
 
+    public void PurchaseTurret3()
+    {
+        //Debug.Log("Purchase Turret 3");
+        if (state == "Ready")
+        {
+            turret = "3";
+            state = "MoneyCheck";
+        }
+    }
+
+    public void ExcavateToggle()
+    {
+        if (excavateToggle == false)
+        {
+            excavateToggle = true;
+            return;
+        }
+        if (excavateToggle == true)
+        {
+            excavateToggle = false;
+            return;
+        }
+    }
+
     void Update()
     {
         //Debug.Log(money.cash);
         //Debug.Log(state);
+        if (Input.GetMouseButtonDown(1)) // rightclick
+        {
+            GameObject.Find("Shop").GetComponent<Shop>().state = "Cancel";
+        }
         switch (state)
         {
             case "Ready":
@@ -51,16 +83,19 @@ public class Shop : MonoBehaviour
                 break;
 
             case "MoneyCheck":
-                if(money.cash >= T1Cost)
+                if(money.cash >= T1Cost & turret == "1")
                 {
-                    if (turret == "1")
-                    {
-                        Instantiate(Turret1Ghost, new Vector3(0f, 2f, 0f), Quaternion.Euler(0, 0, 0));
-                    }
-                    else if (turret == "2")
-                    {
-                        Instantiate(Turret2Ghost, new Vector3(0f, 2f, 0f), Quaternion.Euler(0, 0, 0));
-                    }
+                    Instantiate(Turret1Ghost, new Vector3(0f, 2f, 0f), Quaternion.Euler(0, 0, 0));
+                    state = "Placement";
+                }
+                else if (money.cash >= T2Cost & turret == "2")
+                {
+                    Instantiate(Turret2Ghost, new Vector3(0f, 2f, 0f), Quaternion.Euler(0, 0, 0));
+                    state = "Placement";
+                }
+                else if (money.cash >= T3Cost & turret == "3")
+                {
+                    Instantiate(Turret3Ghost, new Vector3(0f, 2f, 0f), Quaternion.Euler(0, 0, 0));
                     state = "Placement";
                 }
                 else
@@ -83,6 +118,10 @@ public class Shop : MonoBehaviour
                 {
                     Destroy(GameObject.Find("Turret2ghost(Clone)"));
                 }
+                else if (turret == "3")
+                {
+                    Destroy(GameObject.Find("Turret3ghost(Clone)"));
+                }
                 state = "Ready";
                 break;
 
@@ -90,16 +129,23 @@ public class Shop : MonoBehaviour
                 if (turret == "1")
                 {
                     pos = GameObject.Find("Turret1ghost(Clone)").transform.position;
-                    Instantiate(Turret1Real, pos, Quaternion.Euler(0, 2f, 0));
+                    Instantiate(Turret1Real, pos, Quaternion.Euler(0, 0, 0), GameObject.Find("Turrets").transform);
                     Destroy(GameObject.Find("Turret1ghost(Clone)"));
                     money.cash -= T1Cost;
                 }
                 else if (turret == "2")
                 {
                     pos = GameObject.Find("Turret2ghost(Clone)").transform.position;
-                    Instantiate(Turret2Real, pos, Quaternion.Euler(0, 2f, 0));
+                    Instantiate(Turret2Real, pos, Quaternion.Euler(0, 0, 0), GameObject.Find("Turrets").transform);
                     Destroy(GameObject.Find("Turret2ghost(Clone)"));
-                    money.cash -= T1Cost;
+                    money.cash -= T2Cost;
+                }
+                else if (turret == "3")
+                {
+                    pos = GameObject.Find("Turret3ghost(Clone)").transform.position;
+                    Instantiate(Turret3Real, pos + new Vector3(0,-0.5f,0), Quaternion.Euler(0, 0, 0), GameObject.Find("Turrets").transform);
+                    Destroy(GameObject.Find("Turret3ghost(Clone)"));
+                    money.cash -= T3Cost;
                 }
                 state = "Ready";
                 turret = "nil";

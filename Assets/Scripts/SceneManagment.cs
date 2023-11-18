@@ -10,7 +10,6 @@ public class SceneManagment : MonoBehaviour
     {
         activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadSceneAsync(activeScene.name);
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     public void LoadNewScene(string scene)
@@ -18,10 +17,5 @@ public class SceneManagment : MonoBehaviour
         string levelToLoad;
         levelToLoad = scene;
         SceneManager.LoadSceneAsync(levelToLoad);
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        //Debug.Log(SceneManager.sceneCount);
     }
 }

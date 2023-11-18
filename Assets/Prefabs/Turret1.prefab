@@ -47,6 +47,7 @@ MonoBehaviour:
   damage: 35
   bulletSpeed: 20
   range: 10
+  size: 0.45
   fireRate: 1
   enemyTag: Enemy
   targetEnemy: {fileID: 0}
@@ -163,4 +164,11 @@ MonoBehaviour:
   hoverColor: {r: 0, g: 0, b: 0, a: 0}
   Turret1Ghost: {fileID: 1855509885897811091, guid: db60c50a5768b504b9e1eaea9b0f19fc, type: 3}
   Turret1Real: {fileID: 1855509885897811091}
+  Turret2Ghost: {fileID: 0}
+  Turret2Real: {fileID: 0}
+  GndNode: {fileID: 0}
+  MontNode: {fileID: 0}
+  place: 
   gndTurret: 0
+  ObjName: 
+  ObjPos: {x: 0, y: 0, z: 0}

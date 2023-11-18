@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret2 : MonoBehaviour
+public class Turret3 : MonoBehaviour
 {
 
     [Header("Attributes")]
 
-    public float damage = 50f;
-    public float bulletSpeed = 80f;
-    public float range = 100f;
+    public float damage = 10f;
+    public float bulletSpeed = 50f;
+    public float range = 6f;
     public float size = 0.3f;
-    public float fireRate = 0.5f;
+    public float fireRate = 8f;
     public string enemyTag = "Enemy";
 
     [Header("Unity Setup Fields")]

@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
-  bulletSpeed: 50
-  range: 100
-  size: 0.4
+  bulletSpeed: 80
+  range: 30
+  size: 0.3
   fireRate: 0.5
   enemyTag: Enemy
   targetEnemy: {fileID: 0}
@@ -166,4 +166,11 @@ MonoBehaviour:
   Turret1Real: {fileID: 1855509885897811091}
   Turret2Ghost: {fileID: 0}
   Turret2Real: {fileID: 0}
+  Turret3Ghost: {fileID: 0}
+  Turret3Real: {fileID: 0}
+  GndNode: {fileID: 0}
+  MontNode: {fileID: 0}
+  place: 
   gndTurret: 0
+  ObjName: 
+  ObjPos: {x: 0, y: 0, z: 0}

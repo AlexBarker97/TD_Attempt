@@ -113,6 +113,8 @@ MonoBehaviour:
   Turret1Real: {fileID: 1855509885897811091, guid: 21d9919c363a4d34ea1528d002673588, type: 3}
   Turret2Ghost: {fileID: 1855509885897811091, guid: 1bd5f709bd16bae4d8a394caa3a59b08, type: 3}
   Turret2Real: {fileID: 1855509885897811091, guid: ea472a1dd2a6c8b40ae6c0a3818f9630, type: 3}
+  Turret3Ghost: {fileID: 2648703414225640522, guid: d6cb81d4fc046754b8360c485287e7e0, type: 3}
+  Turret3Real: {fileID: 2223693370255543513, guid: 45d13f5a61f116147a0af4b9090acb11, type: 3}
   GndNode: {fileID: 4663859973472991661, guid: a37f6035df25f2f4d815f3159fcd7656, type: 3}
   MontNode: {fileID: 4663859973472991661, guid: 36c10ad2a7007d94dbd6c6ba826aeac9, type: 3}
   place: 
