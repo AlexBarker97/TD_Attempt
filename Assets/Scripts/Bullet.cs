@@ -8,8 +8,32 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        bulletSpeed = this.transform.parent.gameObject.GetComponent<Turret1>().bulletSpeed;
-        damage = this.transform.parent.gameObject.GetComponent<Turret1>().damage;
+
+        if (gameObject.transform.parent.GetComponent<Turret1>())
+        {
+            bulletSpeed = gameObject.transform.parent.GetComponent<Turret1>().bulletSpeed;
+        }
+        if (gameObject.transform.parent.GetComponent<Turret2>())
+        {
+            bulletSpeed = gameObject.transform.parent.GetComponent<Turret2>().bulletSpeed;
+        }
+        if (gameObject.transform.parent.GetComponent<Turret3>())
+        {
+            bulletSpeed = gameObject.transform.parent.GetComponent<Turret3>().bulletSpeed;
+        }
+
+        if (gameObject.transform.parent.GetComponent<Turret1>())
+        {
+            damage = gameObject.transform.parent.GetComponent<Turret1>().damage;
+        }
+        if (gameObject.transform.parent.GetComponent<Turret2>())
+        {
+            damage = gameObject.transform.parent.GetComponent<Turret2>().damage;
+        }
+        if (gameObject.transform.parent.GetComponent<Turret3>())
+        {
+            damage = gameObject.transform.parent.GetComponent<Turret3>().damage;
+        }
     }
     
     public void Seek(Transform _target)

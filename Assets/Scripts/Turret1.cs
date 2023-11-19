@@ -74,7 +74,7 @@ public class Turret1 : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation, this.transform);
+        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, transform.position + new Vector3(0,2.5f,0), transform.rotation, this.transform);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
         bullet.transform.localScale = new Vector3(size, size, size);
 

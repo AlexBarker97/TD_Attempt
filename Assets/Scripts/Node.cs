@@ -23,6 +23,7 @@ public class Node : MonoBehaviour
     public string place;
     public bool gndTurret = false;
 	private GameObject Old;
+    private Transform ObjParent;
     public string ObjName;
     public Vector3 ObjPos;
 
@@ -92,6 +93,7 @@ public class Node : MonoBehaviour
         place = GameObject.Find("Shop").GetComponent<Shop>().turret;
         ObjName = rend.gameObject.name;
         ObjPos = rend.gameObject.transform.position;
+        ObjParent = rend.gameObject.transform.parent;
 
         if ((GameObject.Find("Shop").GetComponent<Shop>().state == "Ready") & (place == "nil"))
         {
@@ -143,6 +145,13 @@ public class Node : MonoBehaviour
                             break;
                     }
                 }
+                else
+                {
+                    if(ObjParent != GameObject.Find("Nodes").transform)
+                    {
+                        Debug.Log("Upgrade menu for: " + ObjParent);
+                    }
+                }
                 
                 if (Input.GetMouseButtonDown(1)) // rightclick
                 {
@@ -157,6 +166,7 @@ public class Node : MonoBehaviour
             if (Input.GetMouseButtonDown(0)) // leftclick
             {
                 GameObject.Find("Shop").GetComponent<Shop>().state = "Actualisation";
+                Destroy(rend.gameObject);
             }
 		}
 	}
