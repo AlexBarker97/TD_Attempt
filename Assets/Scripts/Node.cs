@@ -7,7 +7,7 @@ public class Node : MonoBehaviour
     Money money;
     public Color hoverColor;
 	private Renderer rend;
-	private Color startColor;
+	public Color startColor;
 	public GameObject Turret1Ghost;
 	public GameObject Turret1Real;
     public GameObject Turret2Ghost;
@@ -20,6 +20,7 @@ public class Node : MonoBehaviour
     private int montClearCost = 500;
     private int forestClearCost = 250;
 
+    public bool selected = false;
     public string place;
     public bool gndTurret = false;
 	private GameObject Old;
@@ -40,13 +41,16 @@ public class Node : MonoBehaviour
 
 	void OnMouseEnter()
 	{
-        if (GameObject.Find("Shop").GetComponent<Shop>().excavateToggle == true)
+        if (!selected)
         {
-            rend.material.SetColor("_Color", startColor + new Color(0.65f, -0.25f, -0.25f, 0f));
-        }
-        else
-        {
-            rend.material.SetColor("_Color", startColor + new Color(0.3f, 0.3f, 0.3f, 0f));
+            if (GameObject.Find("Shop").GetComponent<Shop>().excavateToggle == true)
+            {
+                rend.material.SetColor("_Color", startColor + new Color(0.65f, -0.25f, -0.25f, 0f));
+            }
+            else
+            {
+                rend.material.SetColor("_Color", startColor + new Color(0.3f, 0.3f, 0.3f, 0f));
+            }
         }
         place = GameObject.Find("Shop").GetComponent<Shop>().turret;
 
@@ -149,7 +153,21 @@ public class Node : MonoBehaviour
                 {
                     if(ObjParent != GameObject.Find("Nodes").transform)
                     {
-                        Debug.Log("Upgrade menu for: " + ObjParent);
+                        if(ObjParent.name == "Turret1(Clone)")
+                        {
+                            GameObject.Find("Shop").GetComponent<Shop>().UpgradeTurret1(ObjParent, "browse");
+                            rend.gameObject.transform.GetComponent<Node>().selected = true;
+                            rend.gameObject.tag = "Selected";
+                            rend.material.SetColor("_Color", new Color(0.75f, 0.85f, 0.75f, 0f));
+                        }
+                        if (ObjParent.name == "Turret2(Clone)")
+                        {
+                            GameObject.Find("Shop").GetComponent<Shop>().UpgradeTurret2(ObjParent, "browse");
+                        }
+                        if (ObjParent.name == "Turret3(Clone)")
+                        {
+                            GameObject.Find("Shop").GetComponent<Shop>().UpgradeTurret3(ObjParent, "browse");
+                        }
                     }
                 }
                 
@@ -173,6 +191,9 @@ public class Node : MonoBehaviour
 
 	void OnMouseExit()
 	{
-        rend.material.SetColor("_Color", startColor);
+        if (!selected)
+        {
+            rend.material.SetColor("_Color", startColor);
+        }
     }
 }

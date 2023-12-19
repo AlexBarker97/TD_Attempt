@@ -5,6 +5,10 @@ using UnityEngine.UI;
 public class Shop : MonoBehaviour
 {
     Money money;
+    public GameObject ShopUI;
+    public GameObject T1UpgradeUI;
+    public GameObject T2UpgradeUI;
+    public GameObject T3UpgradeUI;
     public GameObject Turret1Ghost;
     public GameObject Turret1Real;
     public GameObject Turret2Ghost;
@@ -18,6 +22,7 @@ public class Shop : MonoBehaviour
     public string turret = "nil";   //will spawn based on turret selected
     public bool excavateToggle = false;
     private Vector3 pos;
+    public GameObject[] selectees;
 
     void Awake()
     {
@@ -49,6 +54,62 @@ public class Shop : MonoBehaviour
         Destroy(GameObject.Find("Turret2ghost(Clone)"));
         Destroy(GameObject.Find("Turret3ghost(Clone)"));
         state = "MoneyCheck";
+    }
+
+    public void UpgradeTurret1(Transform Obj, string task)
+    {
+        switch (task)
+        {
+            case "browse":
+                ShopUI.SetActive(false);
+                T1UpgradeUI.SetActive(true);
+                break;
+        }
+    }
+
+    public void UpgradeRange()
+    {
+        //TO COMPLETE
+        //NEEDS WORK CAN SELECT MULTIPLE AND UPGRADE AT ONCE
+        //NEEDS TO HIGHLIGHT TURRENT & GND
+        selectees = GameObject.FindGameObjectsWithTag("Selected");
+        foreach (GameObject selected in selectees)
+        {
+            selected.GetComponent<MeshRenderer>().material.SetColor("_Color", selected.transform.GetComponent<Node>().startColor);
+            selected.tag = "Untagged";
+            selected.GetComponent<Node>().selected = false;
+            Debug.Log(selected.transform.parent.GetComponent<Turret1>().range);
+            selected.transform.parent.GetComponent<Turret1>().range += 100; 
+        }
+        ShopUI.SetActive(true);
+        T1UpgradeUI.SetActive(false);
+        T2UpgradeUI.SetActive(false);
+        T3UpgradeUI.SetActive(false);
+    }
+
+    public void UpgradeTurret2(Transform Obj, string task)
+    {
+        //ToDo
+    }
+
+    public void UpgradeTurret3(Transform Obj, string task)
+    {
+        //ToDo
+    }
+
+    public void ExitUpgrades()
+    {
+        ShopUI.SetActive(true);
+        T1UpgradeUI.SetActive(false);
+        T2UpgradeUI.SetActive(false);
+        T3UpgradeUI.SetActive(false);
+        selectees = GameObject.FindGameObjectsWithTag("Selected");
+        foreach (GameObject selected in selectees)
+        {
+            selected.GetComponent<MeshRenderer>().material.SetColor("_Color", selected.transform.GetComponent<Node>().startColor);
+            selected.tag = "Untagged";
+            selected.GetComponent<Node>().selected = false;
+        }
     }
 
     public void ExcavateToggle()
