@@ -151,14 +151,17 @@ public class Node : MonoBehaviour
                 }
                 else
                 {
-                    if(ObjParent != GameObject.Find("Nodes").transform)
+                    if((ObjParent != GameObject.Find("Nodes").transform) & (GameObject.FindGameObjectsWithTag("Selected").Length == 0))
                     {
                         if(ObjParent.name == "Turret1(Clone)")
                         {
                             GameObject.Find("Shop").GetComponent<Shop>().UpgradeTurret1(ObjParent, "browse");
-                            rend.gameObject.transform.GetComponent<Node>().selected = true;
-                            rend.gameObject.tag = "Selected";
-                            rend.material.SetColor("_Color", new Color(0.75f, 0.85f, 0.75f, 0f));
+                            ObjParent.GetChild(0).transform.GetComponent<Node>().selected = true;
+                            ObjParent.GetChild(0).tag = "Selected";
+                            ObjParent.GetChild(0).GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(0.75f, 0.85f, 0.75f, 0f));
+                            ObjParent.GetChild(1).transform.GetComponent<Node>().selected = true;
+                            ObjParent.GetChild(1).tag = "Selected";
+                            ObjParent.GetChild(1).GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(0.75f, 0.85f, 0.75f, 0f));
                         }
                         if (ObjParent.name == "Turret2(Clone)")
                         {

@@ -16,13 +16,15 @@ public class Shop : MonoBehaviour
     public GameObject Turret3Ghost;
     public GameObject Turret3Real;
     public int T1Cost = 100;
+    public int T1RangeCost = 50;
     public int T2Cost = 100;
     public int T3Cost = 100;
     public string state = "Ready";
     public string turret = "nil";   //will spawn based on turret selected
     public bool excavateToggle = false;
     private Vector3 pos;
-    public GameObject[] selectees;
+    private GameObject[] selectees;
+    private GameObject selected;
 
     void Awake()
     {
@@ -69,22 +71,33 @@ public class Shop : MonoBehaviour
 
     public void UpgradeRange()
     {
-        //TO COMPLETE
-        //NEEDS WORK CAN SELECT MULTIPLE AND UPGRADE AT ONCE
-        //NEEDS TO HIGHLIGHT TURRENT & GND
-        selectees = GameObject.FindGameObjectsWithTag("Selected");
-        foreach (GameObject selected in selectees)
+        if (money.cash < T1RangeCost)
         {
-            selected.GetComponent<MeshRenderer>().material.SetColor("_Color", selected.transform.GetComponent<Node>().startColor);
-            selected.tag = "Untagged";
-            selected.GetComponent<Node>().selected = false;
-            Debug.Log(selected.transform.parent.GetComponent<Turret1>().range);
-            selected.transform.parent.GetComponent<Turret1>().range += 100; 
+            // wah (not enough money)
+            Debug.Log("Not enough money");
         }
-        ShopUI.SetActive(true);
-        T1UpgradeUI.SetActive(false);
-        T2UpgradeUI.SetActive(false);
-        T3UpgradeUI.SetActive(false);
+        else
+        {
+            selectees = GameObject.FindGameObjectsWithTag("Selected");
+            selected = GameObject.FindGameObjectsWithTag("Selected")[0];
+            selected.transform.parent.GetComponent<Turret1>().range += 10;
+            foreach (GameObject selected in selectees)
+            {
+                selected.GetComponent<MeshRenderer>().material.SetColor("_Color", selected.transform.GetComponent<Node>().startColor);
+                selected.tag = "Untagged";
+                selected.GetComponent<Node>().selected = false;
+            }
+            ShopUI.SetActive(true);
+            T1UpgradeUI.SetActive(false);
+            T2UpgradeUI.SetActive(false);
+            T3UpgradeUI.SetActive(false);
+            money.cash -= T1RangeCost;
+        }
+        
+
+        //Debug.Log(selected.transform.parent.GetComponent<Turret1>().range);
+
+        
     }
 
     public void UpgradeTurret2(Transform Obj, string task)
