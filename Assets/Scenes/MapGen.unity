@@ -574,7 +574,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 5284899866500364622, guid: 86e7c5a2c5987ac468683a22f9ff9fd2, type: 3}
-  timeBetweenWaves: 10
+  enemyPrefab2: {fileID: 5284899866500364622, guid: bcc7fb9225e485c418087af6bc066912, type: 3}
+  enemyPrefab3: {fileID: 5284899866500364622, guid: f3373e329e01b4942a5491a55ad38576, type: 3}
   waveCountdownText: {fileID: 1992489}
   wavesSpawned: 0
 --- !u!4 &182806312
@@ -1536,12 +1537,12 @@ MonoBehaviour:
   Turret3Ghost: {fileID: 1855509885897811091, guid: a4d7c4843e45d87408ea7f7754f9d1a6, type: 3}
   Turret3Real: {fileID: 1855509885897811091, guid: 7a9ec3cce1f38b145a7f1791335571b6, type: 3}
   T1Cost: 100
+  T1RangeCost: 50
   T2Cost: 100
   T3Cost: 100
   state: Ready
   turret: nil
   excavateToggle: 0
-  selectees: []
 --- !u!224 &493788349 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6806077663984013846, guid: e3837cf5c4ab02a498c52d8fea913880, type: 3}

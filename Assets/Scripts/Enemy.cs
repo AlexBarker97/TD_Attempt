@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour
         }
         if (cause == "killed")
         {
-            money.cash += 25;
+            money.cash += worth;
         }
         return;
     }
